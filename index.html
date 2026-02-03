@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>BFGAME</title>
+    </head>
+
+    <body>
+        <h1>BFGAME</h1>
+        <p id="display">0 0 0 0 0 0 0 0 &lt;0&gt;</p>
+        <p>Value: <span id="value">0</span>v</p>
+
+        <hr>
+
+        <table><tbody><tr><td>
+
+            <table cellspacing="20">
+                <caption>Workers</caption>
+                <thead>
+                    <th>Code</th>
+                    <th>Held</th>
+                    <th>Enabled</th>
+                </thead>
+                <tbody id="workers">
+                    <!-- generated -->
+                </tbody>
+            </table>
+        
+        </td><td>
+
+            <h2>Upgrades</h2>
+
+            <button>Generator Speed<br>Cost: <span id="genspeedcost">0</span>v</button>
+            <button>Generator Amount<br>Cost: <span id="genamtcost">0</span>v</button>
+            <button>New Worker<br>Cost: <span id="workercost">0</span>v</button>
+
+        </td></tr><td></td><td>
+    
+            <h2>How to Play</h2>
+
+            <h3>Objective</h3>
+            <p>
+                The objective of the game is to write BF programs to move numbers from the other cells to the goal cell, marked with the angle brackets  &lt; and &gt;. Value deposited at the goal cell will be transformed into currency.<br>
+                This special version of BF has the traditional '+' and '-' operations, but they take and give from a 'held' value that each worker has. A worker cannot create new value from nothing.<br>
+                When a worker's program exits, it becomes inactive and must be turned active again manually. Location will be reset, but its held value will not.<br> 
+                Value will be added to random cells by the 'generator,' which can be upgraded in speed and amount.
+            </p>
+
+            <p>Operations:</p>
+            <ul>
+                <li><code>+</code> Deposit from held value</li>
+                <li><code>-</code> Take from current location</li>
+                <li><code>&gt;</code> Move current location right</li>
+                <li><code>&lt;</code> Move current location left</li>
+                <li><code>[</code> Open loop</li>
+                <li><code>]</code> Regular close loop, jump back if value at current location is not zero</li>
+                <li><code>&rbrace;</code> Special close loop, jump back if held value is not zero</li>
+                <li><code>.</code> (Debug) Print value at current location to <code>console.log()</code></li>
+            </ul>
+
+        </td></tbody></table>
+
+        <script defer src="js/bfworker.js"></script>
+        <script defer src="js/script.js"></script>
+    </body>
+</html>
