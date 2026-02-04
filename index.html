@@ -8,7 +8,7 @@
 
     <body>
         <h1>BFGAME</h1>
-        <p id="display">0 0 0 0 0 0 0 0 &lt;0&gt;</p>
+        <p id="display">the array &lt;0&gt;</p>
         <p>Value: <span id="value">0</span>v</p>
 
         <hr>
@@ -31,9 +31,9 @@
 
             <h2>Upgrades</h2>
 
-            <button>Generator Speed<br>Cost: <span id="genspeedcost">0</span>v</button>
-            <button>Generator Amount<br>Cost: <span id="genamtcost">0</span>v</button>
-            <button>New Worker<br>Cost: <span id="workercost">0</span>v</button>
+            <button id="upggenspdbtn" onclick="upgradeGeneratorSpeed()" title="Increase rate that value is randomly placed in a cell.">Generator Speed<br>Cost: <span id="genspeedcost">0</span>v</button>
+            <button id="upggenamtbtn" onclick="upgradeGeneratorAmount()" title="Increase the amount that is placed in a random cell per generation.">Generator Amount<br>Cost: <span id="genamtcost">0</span>v</button>
+            <button id="buyworkerbtn" onclick="buyWorker()" title="Buy a new BF program runner, which will run concurrently with the others.">New Worker<br>Cost: <span id="workercost">0</span>v</button>
 
         </td></tr><td></td><td>
     
@@ -61,6 +61,7 @@
 
         </td></tbody></table>
 
+        <script defer src="js/file.js"></script>
         <script defer src="js/bfworker.js"></script>
         <script defer src="js/script.js"></script>
     </body>

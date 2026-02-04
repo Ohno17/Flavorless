@@ -55,10 +55,13 @@ bfworker.prototype.reset = function(commands) {
 }
 
 bfworker.prototype.run = function() {
-    console.log(this.commands[this.pc]);
-    
-    const func = this.operations[this.commands[this.pc]];
+    let func = this.operations[this.commands[this.pc]];
+    while (!func && this.pc < this.commands.length) {
+        this.pc++;
+        func = this.operations[this.commands[this.pc]];
+    }
     if (func) func();
+
     this.pc++;
     if (this.pc >= this.commands.length) {
         this.pc = 0;
