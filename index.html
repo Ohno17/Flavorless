@@ -8,16 +8,18 @@
 
     <body>
         <h1>BFGAME</h1>
-        <p id="display">the array &lt;0&gt;</p>
+        <code><p id="display">the array &lt;0&gt;</p></code>
         <p>Value: <span id="value">0</span>v</p>
+        <p>Level: <span id="lvl">1</span> <progress id="exp" value="0" max="1"></progress></p>
 
         <hr>
 
         <table><tbody><tr><td>
 
             <table cellspacing="20">
-                <caption>Workers</caption>
+                <caption><h2>Workers</h2></caption>
                 <thead>
+                    <th>#</th>
                     <th>Code</th>
                     <th>Held</th>
                     <th>Enabled</th>
@@ -29,37 +31,51 @@
         
         </td><td>
 
+            <button onclick="setAllActive(true)">Activate All</button>
+            <button onclick="setAllActive(false)">Disable All</button>
+            <button id="fullResetButton" onclick="fullReset()">Reset Game</button>
+
             <h2>Upgrades</h2>
 
             <button id="upggenspdbtn" onclick="upgradeGeneratorSpeed()" title="Increase rate that value is randomly placed in a cell.">Generator Speed<br>Cost: <span id="genspeedcost">0</span>v</button>
             <button id="upggenamtbtn" onclick="upgradeGeneratorAmount()" title="Increase the amount that is placed in a random cell per generation.">Generator Amount<br>Cost: <span id="genamtcost">0</span>v</button>
             <button id="buyworkerbtn" onclick="buyWorker()" title="Buy a new BF program runner, which will run concurrently with the others.">New Worker<br>Cost: <span id="workercost">0</span>v</button>
 
-        </td></tr><td></td><td>
-    
+            <br><br>
+
             <h2>How to Play</h2>
 
-            <h3>Objective</h3>
-            <p>
-                The objective of the game is to write BF programs to move numbers from the other cells to the goal cell, marked with the angle brackets  &lt; and &gt;. Value deposited at the goal cell will be transformed into currency.<br>
-                This special version of BF has the traditional '+' and '-' operations, but they take and give from a 'held' value that each worker has. A worker cannot create new value from nothing.<br>
-                When a worker's program exits, it becomes inactive and must be turned active again manually. Location will be reset, but its held value will not.<br> 
-                Value will be added to random cells by the 'generator,' which can be upgraded in speed and amount.
-            </p>
+            <details>
+                <summary>Objective</summary>
+                <p>
+                    The objective of the game is to write BF programs to move numbers from the other cells to the goal cell, marked with subscript<sub>goal</sub>. Workers whose data pointers are at a position are indicated with a superscript<sup>$</sup>. Value deposited at the goal cell will be transformed into currency.<br>
+                    This special version of BF has the traditional '+' and '-' operations, but they take and give from a 'held' value that each worker has. A worker cannot create new value from nothing.<br>
+                    Progression through levels is done through total amount of commands executed, regardless of the command or its output.<br>
+                    When a worker's program exits, it becomes inactive and must be turned active again manually. Location will be reset, but its held value will not.<br> 
+                    Value will be added to random cells by the 'generator,' which can be upgraded in speed and amount.<br>
+                    Every level increases the size of the data array by 1.
+                </p>
+            </details>
 
-            <p>Operations:</p>
-            <ul>
-                <li><code>+</code> Deposit from held value</li>
-                <li><code>-</code> Take from current location</li>
-                <li><code>&gt;</code> Move current location right</li>
-                <li><code>&lt;</code> Move current location left</li>
-                <li><code>[</code> Open loop</li>
-                <li><code>]</code> Regular close loop, jump back if value at current location is not zero</li>
-                <li><code>&rbrace;</code> Special close loop, jump back if held value is not zero</li>
-                <li><code>.</code> (Debug) Print value at current location to <code>console.log()</code></li>
-            </ul>
+            <details>
+                <summary>Operations</summary>
+                <ul>
+                    <li><code>+</code> Deposit from held value</li>
+                    <li><code>-</code> Take from current location</li>
+                    <li><code>&gt;</code> Move current location right</li>
+                    <li><code>&lt;</code> Move current location left</li>
+                    <li><code>[</code> Open loop</li>
+                    <li><code>]</code> Regular close loop, jump back if value at current location is not zero</li>
+                    <li><code>&rbrace;</code> Special close loop, jump back if held value is not zero</li>
+                    <li><code>.</code> Print value to Output</li>
+                    <li><code>!</code> Print "Alert!" to Output</li>
+                </ul>
+            </details>
 
-        </td></tbody></table>
+        </td></tr><tr><td>
+            <h2>Output</h2>
+            <textarea id="output" autocomplete="off" rows="10" cols="40" disabled readonly></textarea>
+        </td><td></td></tr></tbody></table>
 
         <script defer src="js/file.js"></script>
         <script defer src="js/bfworker.js"></script>

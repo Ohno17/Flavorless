@@ -1,3 +1,4 @@
+const output = document.getElementById("output");
 
 function bfworker(array, commands) {
     this.array = array;
@@ -17,7 +18,6 @@ function bfworker(array, commands) {
         if (self.held == 0) return;
         self.held--;
         self.array[self.dc]++;
-        if (self.array[self.dc] > 255) self.dc = 0;
     };
     this.operations["-"] = function() {
         if (self.array[self.dc] == 0) return;
@@ -33,7 +33,20 @@ function bfworker(array, commands) {
         if (self.dc < 0) self.dc = self.array.length - 1;
     };
     this.operations["."] = function() {
-        console.log(self.array[self.dc]);
+        output.value = new Date().toLocaleTimeString([], {
+            hour: '2-digit',
+            minute: '2-digit',
+            second: '2-digit',
+            hour12: false
+        }) + ": " + self.array[self.dc] + "\n" + output.value;
+    };
+    this.operations["!"] = function() {
+        output.value = new Date().toLocaleTimeString([], {
+            hour: '2-digit',
+            minute: '2-digit',
+            second: '2-digit',
+            hour12: false
+        }) + ": Alert!\n" + output.value;
     };
     this.operations["["] = function() {
         self.pcstack.push(self.pc);
