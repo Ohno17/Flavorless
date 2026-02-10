@@ -69,7 +69,7 @@ function displayArray() {
 
         for (let j = 0; j < workerExecutors.length; j++) {
             if (workerExecutors[j].executor.dc == i) {
-                display.innerHTML += "<sup>$</sup> ";
+                display.innerHTML += "<sup><sup>$"+j+"</sup></sup> ";
             }
         }
 
@@ -151,6 +151,7 @@ function workersUpdate() {
             workerExecutors[i].executor.run();
             addXp(1);
             displayNumbers();
+            displayArray();
         }, Math.random() * 500);
     }
 }
